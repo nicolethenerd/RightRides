@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script language="Javascript">
+      var url = "https://api.geoloqi.com/1/location/last";
+
+      function locationCallback(json) {
+        console.log(json);
+        position = json.location.position;
+        alert("Longitude: " + position.longitude + "\nLatitude: " + position.latitude);
+        //return position or call pin-drawing function
+      }
+
+      function getLocation(auth_token) {
+        url_with_token = url + "?callback=?&oauth_token=" + auth_token;
+        $.getJSON(url_with_token, locationCallback);
+      }
+    </script>
   </head>
   <body>
     <a href="https://api.geoloqi.com/1/account/profile?oauth_token=5276-09d6f72728ee71713875d5d2c93304ba90ec040b">Account info</a>
     <br>
     <a href="https://api.geoloqi.com/1/location/last?oauth_token=5276-09d6f72728ee71713875d5d2c93304ba90ec040b">Get last location</a>
     <br>
+    <a href="#" onclick="javascript: getLocation('5276-09d6f72728ee71713875d5d2c93304ba90ec040b');">JQuery last location</a>
   </body>
 </html>
