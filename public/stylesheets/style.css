@@ -12,9 +12,7 @@ a {
 }
 
 .top_left {
-    border: 2px solid black;
-    height: 200px;
-    padding-left: 10px;
+    height: 250px;
 }
 
 .bottom_left {
@@ -23,7 +21,6 @@ a {
 
 .map {
     float: right;
-    border: 2px solid black;
     width: 100%;
     height: 100%;
 }
@@ -39,4 +36,9 @@ a {
 
 .chat {
     height: 100%;
+    width: 220px;
 }
+
+textarea {
+    resize: none;
+    }

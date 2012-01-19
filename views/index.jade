@@ -5,18 +5,22 @@ include ../html/imports.html
 
 .container-fluid
     .sidebar
-        .top_left
+        .row
             h3 Add A Rider
             .name Name
                 br
                 input
-            .address Address
+            .address Pick-Up Address
                 br
-                textarea
+                textarea(rows=3)
+            .address Drop-Off Address
+                br
+                textarea(rows=3)
              .submit
                 input(type="submit")
-        .bottom_left
-            iframe(src="https://talkgadget.google.com/talkgadget/client", class="chat")
+        .row
+            .bottom_left
+                iframe(src="https://talkgadget.google.com/talkgadget/client", class="chat")
     .content
         .map_div
             iframe(src="google_maps.html", class="map")
