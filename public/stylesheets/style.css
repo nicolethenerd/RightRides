@@ -28,3 +28,8 @@ a {
     width: 55%;
     height: 500px;
 }
+
+#header {
+    background: url('../images/rr_logo.gif') no-repeat;
+    height: 90px;
+}
