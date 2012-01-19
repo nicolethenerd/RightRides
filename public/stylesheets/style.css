@@ -33,3 +33,7 @@ a {
     background: url('../images/rr_logo.gif') no-repeat;
     height: 90px;
 }
+
+.chat {
+    height: 500px;
+}
