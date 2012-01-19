@@ -1,12 +1,20 @@
+include ../html/bootstrap.html
+include ../html/imports.html
+
 #header
 
 #portal
     .left_pane
         .top_left
+            h3 Add A Rider
             .name Name
+                br
                 input
             .address Address
-                input
+                br
+                textarea
+             .submit
+                input(type="submit")
         .bottom_left
             iframe(src="https://talkgadget.google.com/talkgadget/client", class="chat")
     .map this is the map box
