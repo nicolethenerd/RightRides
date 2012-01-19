@@ -12,7 +12,7 @@ a {
 }
 
 .top_left {
-    height: 200px;
+    height: 250px;
 }
 
 .bottom_left {
@@ -38,3 +38,7 @@ a {
     height: 100%;
     width: 220px;
 }
+
+textarea {
+    resize: none;
+    }
