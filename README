@@ -19,7 +19,30 @@ Navigators need to be able to:
 
 Tech Stack:
 Geoloqi - used to create map and do driver tracking
-Twilio - used for text-messaging API
-Google Spreadsheets API - used to log historical data
-Node.js/Nodejitsu
+Node.js - server
 Twitter Bootstrap - CSS Layout
+
+It would be nice to add:
+Google Spreadsheets API - to store data and avoid the need for a database, we could write to the existing RightRides spreadsheet
+
+======
+
+ADDING A NAVIGATOR PHONE
+
+- Download the Geoloqi app onto the phone - make an account
+- From a computer, go to developers.geoloqi.com - log in to your geoloqi account
+- Add the token (it should looks something like this: '5276-09d6f72728ee71713875d5d2c93304ba90ec040b') to the list "var tokens" found at the top of public/javascript/geoloqi.js
+
+======
+
+What's done so far (as of 1/19/12):
+
+- Dispatcher web portal with:
+	- Google Map integrated with Geoloqi to track navigator phones
+	- Embedded Google Talk window to chat with navigators
+	- "Add a Rider" form with data that currently isn't being used - it just shows up in a javascript alert
+
+Next steps:
+- "Add a Rider" data should actually add rider to map
+- "Add a Rider" data should be added to spreadsheet
+- Ability to mark rider as picked up / dropped off (either from dispatcher portal or from navigator phone)
