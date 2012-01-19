@@ -20,8 +20,7 @@ function refresh_all() {
   }
 }
 
-function drawMarker(name, longitude, latitude) {
+function drawMarker2(name, longitude, latitude) {
   console.log("drawing marker: " + name + " at (" + longitude + "," + latitude + ")");
 }
 
-refresh_all(tokens);
