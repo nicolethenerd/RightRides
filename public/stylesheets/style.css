@@ -11,8 +11,8 @@ a {
     width: 40%;
 }
 
-.top_left {
-    height: 250px;
+.sidebar {
+    padding-left: 8px;
 }
 
 .bottom_left {
@@ -30,8 +30,8 @@ a {
 }
 
 #header {
-    background: url('../images/rr_logo.gif') no-repeat;
-    height: 90px;
+    background: url('../images/logo.jpg') no-repeat;
+    height: 50px;
 }
 
 .chat {

@@ -4,23 +4,20 @@ var url = "https://api.geoloqi.com/1/location/last";
 function locationCallback(data) {
   console.log(data);
   position = data.location.position;
-  drawMarker('Navigator1', position.longitude, position.latitude);
+  drawMarker('Navigator1', position.latitude, position.longitude);
 }
 
-function refresh_for_token(auth_token) {
+function refreshForToken(auth_token) {
   url_with_token = url + "?callback=?&oauth_token=" + auth_token;
   console.log("geoloqi url: " + url_with_token);
   $.getJSON(url_with_token, locationCallback);
 }
 
-function refresh_all() {
+function refreshAll() {
   for (i=0; i<tokens.length; i++) {
     console.log("refresh token: " + tokens[i]);
-    refresh_for_token(tokens[i]);
+    refreshForToken(tokens[i]);
   }
 }
 
-function drawMarker2(name, longitude, latitude) {
-  console.log("drawing marker: " + name + " at (" + longitude + "," + latitude + ")");
-}
 

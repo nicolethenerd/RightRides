@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?sensor=false">
+    </script>
+    <script src="../javascript/geoloqi.js"></script>
+    <script type="text/javascript">
+      var map;
+      function initialize() {
+        var myOptions = {
+          center: new google.maps.LatLng(40, -73),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"),
+            myOptions);
+        //var geocoder = new GClientGeocoder();
+        refreshAll();
+      }
+      
+      function drawMarker(name, latitude, longitude) {
+        console.log("drawing " + name + " at " + latitude + "," + longitude);
+       var infowindow = new google.maps.InfoWindow(); 
+       var marker; 
+
+       marker = new google.maps.Marker({ 
+         position: new google.maps.LatLng(latitude, longitude), 
+         map: map 
+       }); 
+   
+       console.log(marker)
+   
+       google.maps.event.addListener(marker, 'click', (function(marker, name) { 
+         return function() { 
+           infowindow.setContent(name); 
+           infowindow.open(map, marker); 
+         } 
+       })(marker, name)); 
+     }
+    </script>
+  </head>
+  <body onload="initialize()">
+    <form action="#" onsubmit="showAddress(this.address.value); return false">
+      <p>
+        <input type="text" size="60" name="address" value="1600 Amphitheatre Pky, Mountain View, CA" />
+        <input type="submit" value="Go!" class="btn"/>
+      </p>
+      <div id="map_canvas" style="width: 1000px; height: 600px;"></div>
+    </form>
+  </body>
+</html>
