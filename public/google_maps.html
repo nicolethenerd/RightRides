@@ -11,20 +11,83 @@
       src="http://maps.googleapis.com/maps/api/js?sensor=false">
     </script>
     <script type="text/javascript">
+	var geocoder = null;
+	var map = null
       function initialize() {
         var myOptions = {
           center: new google.maps.LatLng(-34.397, 150.644),
           zoom: 8,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        var map = new google.maps.Map(document.getElementById("map_canvas"),
+        map = new google.maps.Map(document.getElementById("map_canvas"),
             myOptions);
-        var geocoder = new GClientGeocoder();
+        geocoder = new google.maps.Geocoder();;
+		var locations = [ 
+		  ['Bondi Beach', -33.890542, 151.274856, 4], 
+		  ['Coogee Beach', -33.923036, 151.259052, 5], 
+		  ['Cronulla Beach', -34.028249, 151.157507, 3], 
+		  ['Manly Beach', -33.80010128657071, 151.28747820854187, 2], 
+		  ['Maroubra Beach', -33.950198, 151.259302, 1] 
+		]; 
+
+		var infowindow = new google.maps.InfoWindow(); 
+
+		var marker, i; 
+
+		for (i = 0; i < locations.length; i++) {   
+		  marker = new google.maps.Marker({ 
+			position: new google.maps.LatLng(locations[i][1], locations[i][2]), 
+			map: map 
+		  }); 
+
+		  google.maps.event.addListener(marker, 'click', (function(marker, i) { 
+			return function() { 
+			  infowindow.setContent(locations[i][0]); 
+			  infowindow.open(map, marker); 
+			} 
+		  })(marker, i)); 
+		} 
       }
+
+
+		function showResults(results, status) {
+		  var reverse = (clickMarker != null);
+		  
+		  if (! results) {
+			alert("Geocoder did not return a valid response");
+		  } else {
+			document.getElementById("statusValue").innerHTML = status;
+			document.getElementById("statusDescription").innerHTML = GeocoderStatusDescription[status];
+
+			document.getElementById("responseInfo").style.display = "block";    
+			document.getElementById("responseStatus").style.display = "block";
+
+			if (status == google.maps.GeocoderStatus.OK) {
+			  document.getElementById("matchCount").innerHTML = results.length;       
+			  document.getElementById("responseCount").style.display = "block";
+			  plotMatchesOnMap(results, reverse);
+			} else {
+			  if (! reverse) {
+				map.setCenter(new google.maps.LatLng(0.0, 0.0));
+				map.setZoom(1);
+			  }
+			}
+		  }
+		}
+		
+		function showResults(results){
+			alert(results[0].geometry.location)
+		}
+
+
+		function showAddress(address, fullContactHtml) {
+				  geocoder.geocode(address, showResults);
+		}
+ 
     </script>
   </head>
   <body onload="initialize()">
-    <form action="#" onsubmit="showAddress(this.address.value); return false">
+    <form action="#" onsubmit="showAddress(this.address.value, 'asdf'); return false">
       <p>
         <input type="text" size="60" name="address" value="1600 Amphitheatre Pky, Mountain View, CA" />
         <input type="submit" value="Go!" />
