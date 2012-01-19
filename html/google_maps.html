@@ -11,13 +11,13 @@
       var map;
       function initialize() {
         var myOptions = {
-          center: new google.maps.LatLng(40, -73),
-          zoom: 8,
+          center: new google.maps.LatLng(40.767781718519, -73.985238918519),
+          zoom: 11,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         map = new google.maps.Map(document.getElementById("map_canvas"),
             myOptions);
-        //var geocoder = new GClientGeocoder();
+
         refreshAll();
       }
       
@@ -40,10 +40,44 @@
          } 
        })(marker, name)); 
      }
+	 
+	 
+	 
+		function geocode(this_address) {     
+			//var address = document.getElementById("address").value;			
+			geocoder.geocode({'address': this_address, 'partialmatch': true}, geocodeResult);   
+		
+		}    
+		
+		function geocodeResult(results, status) {     
+			if (status == 'OK' && results.length > 0) {
+				//map.fitBounds(results[0].geometry.viewport);
+				
+				//alert(results[0].geometry.location.lat() + "," + results[0].geometry.location.lng());
+				
+				/////////////////////////////////////////////////////
+				var marker, i; 
+
+   
+				  marker = new google.maps.Marker({ 
+					//position: new google.maps.LatLng(results[0].latitude, results[0].longitude), 
+					position: new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng()), 
+					map: map 
+				  }); 
+
+				
+				/////////////////////////////////////////////////////
+				//map.addOverylay(marker);
+				
+			} else {       
+				alert("Geocode was not successful for the following reason: " + status);     
+			}   
+		}  
+
     </script>
   </head>
   <body onload="initialize()">
-    <form action="#" onsubmit="showAddress(this.address.value); return false">
+    <form action="#" onsubmit="geocode(this.address.value); return false">
       <p>
         <input type="text" size="60" name="address" value="1600 Amphitheatre Pky, Mountain View, CA" />
         <input type="submit" value="Go!" class="btn"/>
