@@ -10,7 +10,10 @@ include ../html/imports.html
                 h3 Add A Rider
                 .name Name
                     br
-                    textarea(id="requestee")
+                    textarea(rows=1,id="requestee")
+                .num_riders Number of Riders
+                    br
+                    textarea(rows=1,id="num_riders")
                 .address Pick-Up Address
                     br
                     textarea(rows=3,id="pick_up_address")
@@ -18,12 +21,12 @@ include ../html/imports.html
                     br
                     textarea(rows=3,id="drop_off_address")
                  .submit
-                    input(type="submit",id="trip_request")
+                    input(type="submit",id="trip_request", class="btn")
         .row
             .bottom_left
                 iframe(src="https://talkgadget.google.com/talkgadget/client", class="chat")
     .content
         .map_div
-            iframe(src="google_maps.html", class="map")
+            include ../html/google_maps.html
     
 
