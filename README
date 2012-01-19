@@ -1,0 +1,24 @@
+RightRides offers women and LGBTQ individuals a free, safe, late night ride home on Friday and Saturday nights from 11:59 PM - 3 AM, (early Saturday or Sunday morning) in 45 NYC neighborhoods across four NYC boroughs. To call for a ride, the dispatch number is (888) 215-SAFE (7233). 
+
+We are creating a web portal for RightRides dispatchers to connect them with navigators (who sit alongside the RightRides drivers and communicate with the dispatcher) to facilitate information regarding pick-up/drop-off of passengers.
+
+Dispatchers need to be able to:
+- Input rider name and address info when they receive a call
+   - app should record call time, add rider to spreadsheet/db
+- Assign a car to a rider
+   - app should notify navigator
+- Text a navigator
+- View map of rider and driver locations
+- Click on rider to view info
+- Click on driver to view info
+
+Navigators need to be able to:
+- Indicate a rider has been picked up/dropped off
+   - app should notify dispatcher web portal
+- Text dispatcher
+
+Tech Stack:
+Geoloqi - used to create map and do driver tracking
+Twilio - used for text-messaging API
+Google Spreadsheets API - used to log historical data
+Node.js/Nodejitsu
