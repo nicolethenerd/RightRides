@@ -3,8 +3,8 @@ include ../html/imports.html
 
 #header
 
-#portal
-    .left_pane
+.container-fluid
+    .sidebar
         .top_left
             h3 Add A Rider
             .name Name
@@ -17,8 +17,8 @@ include ../html/imports.html
                 input(type="submit")
         .bottom_left
             iframe(src="https://talkgadget.google.com/talkgadget/client", class="chat")
-    .map this is the map box
-            iframe(src="google_maps.html", class="chat")
-
+    .content
+        .map_div
+            iframe(src="google_maps.html", class="map")
     
 
