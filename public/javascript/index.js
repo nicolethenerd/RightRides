@@ -2,7 +2,8 @@ var tripRequestClickHandler = function (event) {
     var requestee = $("#requestee").val();
     var pick_up = $("#pick_up_address").val();
     var drop_off = $("#drop_off_address").val();
-    alert("Request Mapped! Requestee: " + requestee + ", Pick-up: " + pick_up + ", Drop-off: " + drop_off);
+    var pick_up_time = new Date().getTime();
+    alert("Request Mapped! Requestee: " + requestee + ", Pick-up: " + pick_up + " at "+ pick_up_time +", Drop-off: " + drop_off);
     // clear values
     $("#requestee").val("");
     $("#pick_up_address").val("");
