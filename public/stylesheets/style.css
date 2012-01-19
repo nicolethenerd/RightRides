@@ -6,3 +6,25 @@ body {
 a {
   color: #00B7FF;
 }
+
+.left_pane {
+    position: absolute;
+    width: 40%;
+}
+
+.top_left {
+    border: 2px solid black;
+    height: 200px;
+}
+
+.bottom_left {
+    border: 2px solid black;
+    height: 300px;
+}
+
+.map {
+    float: right;
+    border: 2px solid black;
+    width: 55%;
+    height: 500px;
+}
