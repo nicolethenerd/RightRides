@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="http://api.geoloqi.com/js/geoloqi.min.js"></script>
+    <script type="text/javascript">
+      window.onload = function () {
+        geoloqi.init();
+        geoloqi.auth = {'access_token': '5278-2fae4622b7260bae1089c83121ca378227806f27'};
+ 
+        function getLastLocation() {
+          geoloqi.get('location/last', function(result, error) {
+            console.log(result);
+          });
+        }
+ 
+        function changeProfileWebsite() {
+          geoloqi.post('account/profile', {'website':'http://example.org/my_cool_site'}, function(result, error) {
+            console.log(result);
+          });
+        }
+      }
+    </script>
+    <title>Geoloqi Client JS Test with Access Token</title>
+  </head>
+  <body>
+    <a href="#" onclick="getLastLocation(); return false">Get Last Location</a>
+    <br>
+    <a href="#" onclick="changeProfileWebsite(); return false">Change Profile Website</a>
+    <br>
+  </body>
+</html>
