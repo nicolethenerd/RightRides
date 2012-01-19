@@ -11,8 +11,8 @@ a {
     width: 40%;
 }
 
-.top_left {
-    height: 250px;
+.sidebar {
+    padding-left: 8px;
 }
 
 .bottom_left {

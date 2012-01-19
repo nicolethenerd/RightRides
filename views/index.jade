@@ -6,18 +6,19 @@ include ../html/imports.html
 .container-fluid
     .sidebar
         .row
-            h3 Add A Rider
-            .name Name
-                br
-                textarea(id="requestee")
-            .address Pick-Up Address
-                br
-                textarea(rows=3,id="pick_up_address")
-            .address Drop-Off Address
-                br
-                textarea(rows=3,id="drop_off_address")
-             .submit
-                input(type="submit",id="trip_request")
+            .top_left
+                h3 Add A Rider
+                .name Name
+                    br
+                    textarea(id="requestee")
+                .address Pick-Up Address
+                    br
+                    textarea(rows=3,id="pick_up_address")
+                .address Drop-Off Address
+                    br
+                    textarea(rows=3,id="drop_off_address")
+                 .submit
+                    input(type="submit",id="trip_request")
         .row
             .bottom_left
                 iframe(src="https://talkgadget.google.com/talkgadget/client", class="chat")
