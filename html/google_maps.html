@@ -57,15 +57,14 @@
 			//var address = document.getElementById("address").value;			
 			geocoder.geocode({'address': this_address, 'partialmatch': true}, geocodeResult);   
 		
-		}    
+		}
+
+    function clearGeocodedAddresses() {
+      geocoder.c
+    }
 		
 		function geocodeResult(results, status) {     
 			if (status == 'OK' && results.length > 0) {
-				//map.fitBounds(results[0].geometry.viewport);
-				
-				//alert(results[0].geometry.location.lat() + "," + results[0].geometry.location.lng());
-				
-				/////////////////////////////////////////////////////
 				var marker, i; 
 
    
@@ -74,11 +73,6 @@
 					position: new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng()), 
 					map: map 
 				  }); 
-
-				
-				/////////////////////////////////////////////////////
-				//map.addOverylay(marker);
-				
 			} else {       
 				alert("Geocode was not successful for the following reason: " + status);     
 			}   
@@ -91,7 +85,7 @@
       <p>
         <input type="text" size="60" name="address" value="26 Court St, New York, NY 11242" />
         <input type="submit" value="Go!" class="btn"/>
-        <input type="submit" value="Clear" class="btn"/>
+        <input type="button" value="Clear" class="btn" onclick="clearGeocodedAddresses();"/>
       </p>
       <div id="map_canvas" style="width: 100%; height: 580px;"></div>
     </form>
