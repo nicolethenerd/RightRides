@@ -9,6 +9,8 @@
     <script src="../javascript/geoloqi.js"></script>
     <script type="text/javascript">
       var map;
+      var geocoder;
+
       function initialize() {
         var myOptions = {
           center: new google.maps.LatLng(40.767781718519, -73.985238918519),
@@ -17,7 +19,9 @@
         };
         map = new google.maps.Map(document.getElementById("map_canvas"),
             myOptions);
-
+        
+        geocoder = new google.maps.Geocoder();
+ 
         refreshAll();
       }
       
