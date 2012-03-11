@@ -22,20 +22,21 @@
       }
       
       function drawMarker(name, latitude, longitude) {
-        console.log("drawing " + name + " at " + latitude + "," + longitude);
+       console.log("drawing " + name + " at " + latitude + "," + longitude);
        var infowindow = new google.maps.InfoWindow(); 
        var marker; 
 
        marker = new google.maps.Marker({ 
          position: new google.maps.LatLng(latitude, longitude), 
-         map: map 
+         map: map,
+         icon: '/images/car_'+name.toLowerCase()+'.png'
        }); 
    
        console.log(marker)
    
        google.maps.event.addListener(marker, 'click', (function(marker, name) { 
          return function() { 
-           infowindow.setContent(name); 
+           infowindow.setContent(name);
            infowindow.open(map, marker); 
          } 
        })(marker, name)); 
