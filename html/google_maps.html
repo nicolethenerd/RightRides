@@ -15,8 +15,9 @@
           zoom: 11,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        map = new google.maps.Map(document.getElementById("map_canvas"),
-            myOptions);
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        var serviceAreas = new google.maps.KmlLayer('http://maps.google.com/maps/ms?ie=UTF8&oe=UTF8&authuser=0&msa=0&output=nl&msid=209738999438525933783.00000111e2265debed28b');
+        serviceAreas.setMap(map);
 
         refreshAll();
       }
