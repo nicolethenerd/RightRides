@@ -26,25 +26,26 @@
         refreshAll();
       }
       
-      function drawMarker(name, latitude, longitude) {
-       console.log("drawing " + name + " at " + latitude + "," + longitude);
-       var infowindow = new google.maps.InfoWindow(); 
+     function drawMarker(profile, latitude, longitude) {
+       console.log("drawing " + profile.display_name + " at " + latitude + "," + longitude);
        var marker; 
+       var infowindow = new google.maps.InfoWindow(); 
 
        marker = new google.maps.Marker({ 
          position: new google.maps.LatLng(latitude, longitude), 
          map: map,
-         icon: '/images/car_'+name.toLowerCase()+'.png'
+         icon: '/images/car_'+profile.display_name.toLowerCase()+'.png'
        }); 
    
        console.log(marker)
    
-       google.maps.event.addListener(marker, 'click', (function(marker, name) { 
-         return function() { 
-           infowindow.setContent(name);
-           infowindow.open(map, marker); 
-         } 
-       })(marker, name)); 
+       google.maps.event.addListener(marker, 'click', (function(marker, profile) {
+         return function() {
+           var html = profile.display_name;
+           infowindow.setContent(html);
+           infowindow.open(map, marker);
+         }
+       })(marker, profile)); 
      }
 	 
 	 
