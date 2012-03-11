@@ -4,29 +4,32 @@ include ../html/imports.html
 #header
 
 .container-fluid
-    .sidebar
-        .row
-            .top_left
-                h3 Add A Rider
-                .name Name
-                    br
-                    textarea(rows=1,id="requestee")
-                .num_riders Number of Riders
-                    br
-                    textarea(rows=1,id="num_riders")
-                .address Pick-Up Address
-                    br
-                    textarea(rows=3,id="pick_up_address")
-                .address Drop-Off Address
-                    br
-                    textarea(rows=3,id="drop_off_address")
-                 .submit
-                    input(type="submit",id="trip_request", class="btn")
-        .row
-            .bottom_left
-                iframe(src="https://talkgadget.google.com/talkgadget/client", class="chat")
-    .content
-        .map_div
-            include ../html/google_maps.html
-    
+	.sidebar
+		.row
+			.top_left
+				h3 Add A Rider
+				.name Name
+					br
+					textarea(rows=1,id="requestee")
+				.phone Phone
+					br
+					textarea(rows=1,id="phone_numbe")
+				.num_riders Number of Riders
+					br
+					textarea(rows=1,id="num_riders")
+				.address Pick-Up Address
+					br
+					textarea(rows=3,id="pick_up_address")
+				.address Drop-Off Address
+					br
+					textarea(rows=3,id="drop_off_address")
+				.submit
+					input(type="submit",id="trip_request", class="btn")
+		.row
+			.bottom_left
+				iframe(src="https://talkgadget.google.com/talkgadget/client", class="chat")
+	.content
+		.map_div
+			include ../html/google_maps.html
+
 
