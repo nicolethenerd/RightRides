@@ -41,7 +41,10 @@
    
        google.maps.event.addListener(marker, 'click', (function(marker, profile) {
          return function() {
-           var html = profile.display_name;
+           var html = "<table border='0'><tr>" +
+             "<td><img src='" + profile.profile_image + "' /></td>" +
+             "<td>" + profile.display_name + "<br />" + profile.phone + "</td>" +
+             "</tr></table>";
            infowindow.setContent(html);
            infowindow.open(map, marker);
          }
