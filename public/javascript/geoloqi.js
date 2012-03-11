@@ -26,7 +26,6 @@ function refreshForToken(auth_token) {
 
 function refreshAll() {
   for (j=0; j<tokens.length; j++) {
-    console.log("refresh token: " + tokens[j]);
     refreshForToken(tokens[j]);
   }
 }

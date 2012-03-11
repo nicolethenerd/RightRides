@@ -1,2 +1,38 @@
 <script src='../javascript/3p/jquery-1.7.min.js'></script>
 <script src='../javascript/index.js'></script>
+<script src='../javascript/functions.js'></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script>
+google.load('gdata', '2.x');
+google.setOnLoadCallback(initialize);
+var final_data;
+function initialize() {
+  var scope = 'https://spreadsheets.google.com/feeds';
+  if (google.accounts.user.checkLogin(scope)) {
+    var service = new google.gdata.client.GoogleService('writely', 'DocList-App-v1.0');
+    service.getFeed(scope + '/spreadsheets/private/full?v=3.0', handleFeed, handleError);
+  } else {
+    var token = google.accounts.user.login(scope); // can ignore returned token
+  }
+};
+
+var handleFeed = function(response) {
+  var entries = response.feed.entry;
+  final_data = response;
+  console.log(final_data);
+  if (!entries.length) {
+    alert('You have no entries!');
+    return;
+  }
+  var html = [];
+  for (var i = 0, entry; entry = entries[i]; i++) {
+    var title = entry.title.$t;
+    html.push('<li>' + title + '</li>');
+  }
+  document.getElementById('spreadsheet_data').innerHTML = html.join('');
+};
+
+var handleError = function(e) {
+  console.log('Error: ' + e.cause ? e.cause.statusText : e.message);
+};
+</script>
