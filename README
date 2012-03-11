@@ -34,6 +34,9 @@ Node (http://nodejs.org/)
 Npm (http://npmjs.org/)
 Expressjs (http://expressjs.com)
 
+Install jade
+npm install jade
+
 # then, run the app with
 cd RightRides
 npm install –d
