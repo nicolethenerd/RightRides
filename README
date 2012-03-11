@@ -25,6 +25,22 @@ Twitter Bootstrap - CSS Layout
 It would be nice to add:
 Google Spreadsheets API - to store data and avoid the need for a database, we could write to the existing RightRides spreadsheet
 
+===== Install NodeJS server =====
+
+The basic app is checked into the git repo.
+
+You need to install the following on your machine
+Node (http://nodejs.org/)
+Npm (http://npmjs.org/)
+Expressjs (http://expressjs.com)
+
+# then, run the app with
+cd RightRides
+npm install –d
+node app.js
+
+Then visit your localhost:3000
+
 ======
 
 ADDING A NAVIGATOR PHONE
