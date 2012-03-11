@@ -11,6 +11,9 @@ include ../html/imports.html
                 .name Name
                     br
                     textarea(rows=1,id="requestee")
+				.phone Phone
+					br
+					textarea(rows=1,id="phone_number")
                 .num_riders Number of Riders
                     br
                     textarea(rows=1,id="num_riders")
@@ -20,7 +23,7 @@ include ../html/imports.html
                 .address Drop-Off Address
                     br
                     textarea(rows=3,id="drop_off_address")
-                 .submit
+                .submit
                     input(type="submit",id="trip_request", class="btn")
         .row
             .bottom_left
