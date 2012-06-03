@@ -27,7 +27,6 @@ function gl_location_callback(data, auth_token) {
 }
 
 function gl_refreshForToken(auth_token) {
-
   var url_with_token = gl_location_url + "?callback=?&oauth_token=" + auth_token;
   console.log("calling geoloqi url: " + url_with_token);
   ++pending_requests;

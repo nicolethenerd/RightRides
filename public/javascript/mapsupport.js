@@ -1,6 +1,7 @@
 var map;
 var geocoder;
 var customMarkers = [];
+var geoloqiMarkers = [];
 var directionsDisplay;
 var directionsService;
 var serviceAreas = new google.maps.KmlLayer('http://maps.google.com/maps/ms?ie=UTF8&oe=UTF8&authuser=0&msa=0&output=nl&msid=209738999438525933783.00000111e2265debed28b');
@@ -34,7 +35,7 @@ function refreshMarkers() {
 
   if(pending_geoloqi_calls == 0){
     console.log("Num of customMarkers: " +customMarkers.length);
-    clearMarkers();
+    clearGeoloqiMarkers();
     gl_refreshAll();
   }else{
     console.log("Skipping call to geoloqi, " + pending_geoloqi_calls + " calls currently open");
@@ -51,8 +52,9 @@ function drawMarker(profile, latitude, longitude) {
     map: map,
     icon: '/images/car_' + profile.display_name.toLowerCase() + '.png'
   });
+  geoloqiMarkers.push(marker);
 
-  console.log(marker)
+  console.log(marker);
 
   google.maps.event.addListener(marker, 'click', (function(marker, profile) {
     return function() {
@@ -66,9 +68,16 @@ function drawMarker(profile, latitude, longitude) {
   })(marker, profile));
 }
 
-function clearMarkers() {
+function clearCustomMarkers() {
   while(customMarkers.length > 0) {
     var marker = customMarkers.pop();
+    marker.setMap(null);
+  }
+}
+
+function clearGeoloqiMarkers() {
+  while(geoloqiMarkers.length > 0) {
+    var marker = geoloqiMarkers.pop();
     marker.setMap(null);
   }
 }
