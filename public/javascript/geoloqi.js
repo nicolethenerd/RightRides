@@ -5,8 +5,10 @@ var tokens = [
 var gl_location_url = "https://api.geoloqi.com/1/location/last";
 var gl_profile_url = "https://api.geoloqi.com/1/account/profile";
 var i = 0;
+var pending_requests = 0;
 
 function gl_profile_callback(data, position, date) {
+  --pending_requests;
   console.log(data);
   current_date = new Date();
   update_date = new Date(date);
@@ -24,16 +26,20 @@ function gl_location_callback(data, auth_token) {
   $.getJSON(url_with_token, function(data) {gl_profile_callback(data, position, date);});
 }
 
-function refreshForToken(auth_token) {
+function gl_refreshForToken(auth_token) {
+
   var url_with_token = gl_location_url + "?callback=?&oauth_token=" + auth_token;
   console.log("calling geoloqi url: " + url_with_token);
+  ++pending_requests;
   $.getJSON(url_with_token, function(data) {gl_location_callback(data, auth_token);});
 }
 
-function refreshAll() {
-  for (j=0; j<tokens.length; j++) {
-    refreshForToken(tokens[j]);
-  }
+function gl_pendingRequests(){
+  return pending_requests;
 }
 
-
+function gl_refreshAll() {
+  for (j=0; j<tokens.length; j++) {
+    gl_refreshForToken(tokens[j]);
+  }
+}

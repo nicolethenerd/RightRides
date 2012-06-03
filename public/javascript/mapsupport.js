@@ -1,7 +1,7 @@
 var map;
 var geocoder;
 var customMarkers = [];
-
+var geoloqi_refresh_rate = 15000; //15 sec
 function initializeMapping() {
     var myOptions = {
         center: new google.maps.LatLng(40.767781718519, -73.985238918519),
@@ -14,10 +14,28 @@ function initializeMapping() {
     var serviceAreas = new google.maps.KmlLayer('http://maps.google.com/maps/ms?ie=UTF8&oe=UTF8&authuser=0&msa=0&output=nl&msid=209738999438525933783.00000111e2265debed28b');
     serviceAreas.setMap(map);
 
-    refreshAll();
-}
 
-function drawMarker(profile, latitude, longitude) {
+   setTimeout("autoRefreshGeoloqi();", geoloqi_refresh_rate);
+  }
+  
+  function autoRefreshGeoloqi(){
+    refreshMarkers();
+    setTimeout("autoRefreshGeoloqi();", geoloqi_refresh_rate);
+  }
+
+  function refreshMarkers(){        
+    var pending_geoloqi_calls = gl_pendingRequests();
+
+    if(pending_geoloqi_calls == 0){
+      console.log("Num of customMarkers: " +customMarkers.length);
+      clearMarkers();
+      gl_refreshAll();
+    }else{
+      console.log("Skipping call to geoloqi, " + pending_geoloqi_calls + " calls currently open");
+    }
+  }
+
+  function drawMarker(profile, latitude, longitude) {
     console.log("drawing " + profile.display_name + " at " + latitude + "," + longitude);
     var marker;
     var infowindow = new google.maps.InfoWindow();
