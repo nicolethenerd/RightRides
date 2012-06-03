@@ -67,6 +67,12 @@ body {
 	padding-bottom: 0;
 }
 
+#RRSpreadsheetPane iframe {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
 #RRChatPane {
 	padding-left: 0;
 	padding-top: 0;
