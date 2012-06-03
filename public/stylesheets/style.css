@@ -7,17 +7,20 @@ body {
 	box-sizing: border-box;
 	height: 100%;
 	width: 100%;
-	padding: 473px 0 0;
+	padding: 404px 0 0;
 	position: relative;
 }
 
 #header {
-	background: url(../images/rr_logo.png) left center no-repeat;
-	height: 67px;
-	width: 100%;
+	background: url(../images/rr_logo_small.png) center center no-repeat;
+	height: 0;
+	width: 151px;
+	overflow: hidden;
+	padding: 26px 0 0;
 	position: absolute;
-	top: 0;
-	left: 0;
+	top: 4px;
+	right: 3px;
+	z-index: 10;
 }
 
 #RRTools {
@@ -25,7 +28,7 @@ body {
 	padding: 0 0 0 318px;
 	border: 0;
 	position: absolute;
-	top: 69px;
+	top: 0;
 	width: 100%;
 	box-sizing: border-box;
 	overflow: hidden;
@@ -56,7 +59,7 @@ body {
 	box-sizing: border-box;
 	width: 100%;
 	height: 100%;
-	padding: 2px;
+	padding: 3px;
 }
 
 
@@ -64,7 +67,7 @@ body {
 /* Individual page controls */
 
 #RRSpreadsheetPane {
-	padding-bottom: 0;
+/*	padding-bottom: 0; */
 }
 
 #RRSpreadsheetPane iframe {
@@ -74,11 +77,19 @@ body {
 }
 
 #RRChatPane {
-	padding-left: 0;
-	padding-top: 0;
+/*	padding-left: 0;
+	padding-top: 0; */
 }
 
 #RRMapPane {
-	padding-right: 0;
-	padding-top: 0;
+/*	padding-right: 0;
+	padding-top: 0; */
+}
+
+#mapaddressInput {
+	margin-bottom: 3px;
+}
+
+#mapaddressInput input[type='text'] {
+	margin-bottom: 0;
 }
