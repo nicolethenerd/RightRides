@@ -3,9 +3,9 @@ include ../html/imports.html
 
 #header
 
-.container-fluid
-	.row-fluid#upper-row
-		.span4
+.panel#RRContainer
+	.panel#RRTools
+		.pane#RRAddRiderForm
 			h3 Add A Rider
 			.name Name
 				br
@@ -24,13 +24,13 @@ include ../html/imports.html
 				textarea(rows=3,id="drop_off_address")
 			.submit
 				input(type="submit",id="trip_request", class="btn")
-		.span4
+		.pane#RRChat
 			.chat
 				iframe(src="https://talkgadget.google.com/talkgadget/client", class="chat")
-		.span4
+		.pane#RRMap
 			.map_div
 				include ../html/google_maps.html
-	.row-fluid
+	.pane#RRSpreadsheet
 		.span12
 			include ../html/spreadsheet.html
 
