@@ -10,7 +10,7 @@ function initialize() {
   var scope = 'https://spreadsheets.google.com/feeds';
   if (google.accounts.user.checkLogin(scope)) {
     var service = new google.gdata.client.GoogleService('writely', 'DocList-App-v1.0');
-    service.getFeed(scope + '/spreadsheets/private/full?v=3.0', handleFeed, handleError);
+    //service.getFeed(scope + '/spreadsheets/private/full?v=3.0', handleFeed, handleError);
   } else {
     var token = google.accounts.user.login(scope); // can ignore returned token
   }
