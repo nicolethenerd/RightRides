@@ -10,8 +10,6 @@ function gl_profile_callback(data, position, date) {
   console.log(data);
   current_date = new Date();
   update_date = new Date(date);
-  console.log(update_date);
-  console.log(current_date.getTime() - update_date.getTime());
   if (current_date.getTime() - update_date.getTime() <= 21600000) // 6 hours in ms
   {
     drawMarker(data, position.latitude, position.longitude);
