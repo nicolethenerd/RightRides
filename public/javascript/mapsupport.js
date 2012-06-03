@@ -2,7 +2,7 @@ var map;
 var geocoder;
 var customMarkers = [];
 
-function initialize() {
+function initializeMapping() {
     var myOptions = {
         center: new google.maps.LatLng(40.767781718519, -73.985238918519),
         zoom: 11,
