@@ -1,42 +1,84 @@
-
-
-a {
-  color: #00B7FF;
+/* Page Layout */
+body {
+	background: rgb(237,237,237);
 }
 
-.left_pane {
-    position: absolute;
-    width: 40%;
-}
-
-.sidebar {
-    padding-left: 8px;
-}
-
-.bottom_left {
-    height: 300px;
-}
-
-.map {
-    float: right;
-    width: 100%;
-    height: 100%;
-}
-
-.map_div {
+#RRContainer {
+	box-sizing: border-box;
 	height: 100%;
+	width: 100%;
+	padding: 473px 0 0;
+	position: relative;
 }
 
 #header {
-    background: url('../images/logo.jpg') no-repeat;
-    height: 50px;
+	background: url(../images/rr_logo.png) left center no-repeat;
+	height: 67px;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
-.chat {
-    height: 100%;
-    width: 220px;
+#RRTools {
+	height: 404px;
+	padding: 0 0 0 318px;
+	border: 0;
+	position: absolute;
+	top: 69px;
+	width: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
 }
 
-textarea {
-    resize: none;
+#RRChatPane {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 318px;
+	height: 402px;
+}
+
+#RRChatPane iframe {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+#RRSpreadsheet {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+/* Generic page controls */
+.pane {
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	padding: 2px;
+}
+
+
+
+/* Individual page controls */
+
+#RRSpreadsheetPane {
+	padding-bottom: 0;
+}
+
+#RRSpreadsheetPane iframe {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+#RRChatPane {
+	padding-left: 0;
+	padding-top: 0;
+}
+
+#RRMapPane {
+	padding-right: 0;
+	padding-top: 0;
 }
