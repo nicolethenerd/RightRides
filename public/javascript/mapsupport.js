@@ -24,12 +24,12 @@ function initializeMapping() {
   setTimeout("autoRefreshGeoloqi();", geoloqi_refresh_rate);
 }
   
-function autoRefreshGeoloqi(){
+function autoRefreshGeoloqi() {
   refreshMarkers();
   setTimeout("autoRefreshGeoloqi();", geoloqi_refresh_rate);
 }
 
-function refreshMarkers(){        
+function refreshMarkers() {
   var pending_geoloqi_calls = gl_pendingRequests();
 
   if(pending_geoloqi_calls == 0){
@@ -47,37 +47,36 @@ function drawMarker(profile, latitude, longitude) {
   var infowindow = new google.maps.InfoWindow();
 
   marker = new google.maps.Marker({
-      position: new google.maps.LatLng(latitude, longitude),
-      map: map,
-      icon: '/images/car_' + profile.display_name.toLowerCase() + '.png'
+    position: new google.maps.LatLng(latitude, longitude),
+    map: map,
+    icon: '/images/car_' + profile.display_name.toLowerCase() + '.png'
   });
 
   console.log(marker)
 
   google.maps.event.addListener(marker, 'click', (function(marker, profile) {
-      return function() {
-        var html = "<table border='0'><tr>" +
-          "<td><img src='" + profile.profile_image + "' /></td>" +
-          "<td>" + profile.display_name + "<br />" + profile.phone + "</td>" +
-          "</tr></table>";
-          infowindow.setContent(html);
-          infowindow.open(map, marker);
-      }
+    return function() {
+      var html = "<table border='0'><tr>" +
+        "<td><img src='" + profile.profile_image + "' /></td>" +
+        "<td>" + profile.display_name + "<br />" + profile.phone + "</td>" +
+        "</tr></table>";
+      infowindow.setContent(html);
+      infowindow.open(map, marker);
+    }
   })(marker, profile));
 }
 
 function clearMarkers() {
-   while(customMarkers.length > 0)
-   {
-    marker = customMarkers.pop();
+  while(customMarkers.length > 0) {
+    var marker = customMarkers.pop();
     marker.setMap(null);
-   }
+  }
 }
 
 function geocode(address_string) {
-  addresses = address_string.split(" to ");
+  var addresses = address_string.split(" to ");
   if(addresses.length == 1) {
-    geocoder.geocode({'address': address_string, 'partialmatch': true}, geocodeResult);   
+    geocoder.geocode({'address': address_string, 'partialmatch': true}, geocodeResult);
   } else if(addresses.length == 2) {
     displayDirections(addresses);
   } else {
@@ -86,22 +85,19 @@ function geocode(address_string) {
 }
 
 function geocodeResult(results, status) {
-    if (status == 'OK' && results.length > 0) {
-        var marker, i;
-
-        marker = new google.maps.Marker({
-            //position: new google.maps.LatLng(results[0].latitude, results[0].longitude),
-            position: new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng()),
-            map: map
-        });
-        customMarkers.push(marker);
-    } else {
-        alert("Geocode was not successful for the following reason: " + status);
-    }
+  if (status == 'OK' && results.length > 0) {
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng()),
+      map: map
+    });
+    customMarkers.push(marker);
+  } else {
+    alert("Geocode was not successful for the following reason: " + status);
+  }
 }
 
 function displayDirections(addresses) {
-  request = {
+  var request = {
     origin: addresses[0],
     destination: addresses[1],
     travelMode: google.maps.TravelMode.DRIVING,
