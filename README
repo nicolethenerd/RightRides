@@ -21,6 +21,7 @@ Tech Stack:
 Geoloqi - used to create map and do driver tracking
 Node.js - server
 Twitter Bootstrap - CSS Layout
+Passport - Simple authentication
 
 It would be nice to add:
 Google Spreadsheets API - to store data and avoid the need for a database, we could write to the existing RightRides spreadsheet
@@ -36,6 +37,9 @@ Expressjs (http://expressjs.com)
 
 Install jade
 npm install jade
+
+Install passport 
+npm install passport
 
 # then, run the app with
 cd RightRides

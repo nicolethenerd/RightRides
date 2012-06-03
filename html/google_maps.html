@@ -11,6 +11,9 @@
       var map;
       var geocoder;
       var customMarkers = [];
+      var directionsDisplay;
+      var directionsService;
+      var serviceAreas = new google.maps.KmlLayer('http://maps.google.com/maps/ms?ie=UTF8&oe=UTF8&authuser=0&msa=0&output=nl&msid=209738999438525933783.00000111e2265debed28b');
 
       function initialize() {
         var myOptions = {
@@ -18,11 +21,15 @@
           zoom: 11,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
+
         geocoder = new google.maps.Geocoder();
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        directionsService = new google.maps.DirectionsService();
 
         map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-        var serviceAreas = new google.maps.KmlLayer('http://maps.google.com/maps/ms?ie=UTF8&oe=UTF8&authuser=0&msa=0&output=nl&msid=209738999438525933783.00000111e2265debed28b');
+        
         serviceAreas.setMap(map);
+        directionsDisplay.setMap(map);
 
         refreshAll();
       }
@@ -51,15 +58,8 @@
          }
        })(marker, profile)); 
      }
-	 
-	 
-	 
-		function geocode(this_address) {     
-			//var address = document.getElementById("address").value;			
-			geocoder.geocode({'address': this_address, 'partialmatch': true}, geocodeResult);   
-		
-		}
-
+   
+   
     function clearMarkers() {
        while(customMarkers.length > 0)
        {
@@ -67,29 +67,53 @@
         marker.setMap(null);
        }
     }
-		
-		function geocodeResult(results, status) {     
-			if (status == 'OK' && results.length > 0) {
-				var marker, i; 
+    
+    function geocode(address_string) {
+      addresses = address_string.split(" to ");
+      if(addresses.length == 1) {
+        geocoder.geocode({'address': address_string, 'partialmatch': true}, geocodeResult);   
+      } else if(addresses.length == 2) {
+        displayDirections(addresses);
+      } else {
+        alert("Multiple destinations are not supported yet.");
+      }
+    }
 
-   
-				  marker = new google.maps.Marker({ 
-					//position: new google.maps.LatLng(results[0].latitude, results[0].longitude), 
-					position: new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng()), 
-					map: map 
-				  });
-          customMarkers.push(marker);
-			} else {       
-				alert("Geocode was not successful for the following reason: " + status);     
-			}   
-		}  
+    function geocodeResult(results, status) {     
+      if (status == 'OK' && results.length > 0) {
+        var marker, i; 
+        marker = new google.maps.Marker({ 
+          position: new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng()), 
+          map: map 
+        });
+        customMarkers.push(marker);
+      } else {       
+        alert("Geocode was not successful for the following reason: " + status);     
+      }   
+    }
+
+    function displayDirections(addresses) {
+      request = {
+        origin: addresses[0],
+        destination: addresses[1],
+        travelMode: google.maps.TravelMode.DRIVING,
+        region: 'United States'
+      }
+      directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+          directionsDisplay.setDirections(response);
+        } else {
+          console.log("DirectionsService was not successful for the following reason: " + status)
+        }
+      });
+    }
 
     </script>
   </head>
   <body onload="initialize()">
     <form action="#" onsubmit="geocode(this.address.value); return false">
       <p>
-        <input type="text" size="60" name="address" value="26 Court St, New York, NY 11242" />
+        <input type="text" size="60" name="address" value="52 Chambers St, New York to 26 Court St, New York" />
         <input type="submit" value="Go!" class="btn"/>
         <input type="button" value="Clear" class="btn" onclick="clearMarkers();"/>
       </p>
