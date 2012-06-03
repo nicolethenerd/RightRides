@@ -6,16 +6,24 @@ var gl_location_url = "https://api.geoloqi.com/1/location/last";
 var gl_profile_url = "https://api.geoloqi.com/1/account/profile";
 var i = 0;
 
-function gl_profile_callback(data, position) {
+function gl_profile_callback(data, position, date) {
   console.log(data);
-  drawMarker(data, position.latitude, position.longitude);
+  current_date = new Date();
+  update_date = new Date(date);
+  console.log(update_date);
+  console.log(current_date.getTime() - update_date.getTime());
+  if (current_date.getTime() - update_date.getTime() <= 21600000) // 6 hours in ms
+  {
+    drawMarker(data, position.latitude, position.longitude);
+  }
 }
 
 function gl_location_callback(data, auth_token) {
   var position = data.location.position;
+  var date = data.date;
   var url_with_token = gl_profile_url + "?callback=?&oauth_token=" + auth_token;
   console.log("calling geoloqi url: " + url_with_token);
-  $.getJSON(url_with_token, function(data) {gl_profile_callback(data, position);});
+  $.getJSON(url_with_token, function(data) {gl_profile_callback(data, position, date);});
 }
 
 function refreshForToken(auth_token) {
