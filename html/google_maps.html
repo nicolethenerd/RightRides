@@ -11,6 +11,7 @@
       var map;
       var geocoder;
       var customMarkers = [];
+      var geoloqi_refresh_rate = 15000; //15 sec
 
       function initialize() {
         var myOptions = {
@@ -24,9 +25,26 @@
         var serviceAreas = new google.maps.KmlLayer('http://maps.google.com/maps/ms?ie=UTF8&oe=UTF8&authuser=0&msa=0&output=nl&msid=209738999438525933783.00000111e2265debed28b');
         serviceAreas.setMap(map);
 
-        refreshAll();
+        setTimeout("autoRefreshGeoloqi();", geoloqi_refresh_rate);
       }
       
+      function autoRefreshGeoloqi(){
+        refreshMarkers();
+        setTimeout("autoRefreshGeoloqi();", geoloqi_refresh_rate);
+      }
+
+      function refreshMarkers(){        
+        var pending_geoloqi_calls = gl_pendingRequests();
+
+        if(pending_geoloqi_calls == 0){
+          console.log("Num of customMarkers: " +customMarkers.length);
+          clearMarkers();
+          gl_refreshAll();
+        }else{
+          console.log("Skipping call to geoloqi, " + pending_geoloqi_calls + " calls currently open");
+        }
+      }
+
      function drawMarker(profile, latitude, longitude) {
        console.log("drawing " + profile.display_name + " at " + latitude + "," + longitude);
        var marker; 
@@ -92,6 +110,8 @@
         <input type="text" size="60" name="address" value="26 Court St, New York, NY 11242" />
         <input type="submit" value="Go!" class="btn"/>
         <input type="button" value="Clear" class="btn" onclick="clearMarkers();"/>
+        <input type="button" value="Refresh Drivers" class="btn" onclick="refreshMarkers();"/>
+
       </p>
       <div id="map_canvas" style="width: 100%; height: 580px;"></div>
     </form>
